@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
     password: hashedPassword,
   });
 
-  const newSession = await createSession(newUser._id);
+  const newSession = await createSession(user._id);
 
   setSessionCookies(res, newSession);
   res.status(201).json(user);
@@ -33,7 +33,7 @@ export const loginUser = async (req, res) => {
   }
 
   const isValidPassword = await bcrypt.compare(password, user.password);
-  if (isValidPassword) {
+  if (!isValidPassword) {
     throw createHttpError(401, 'Invalid credentials');
   }
 
