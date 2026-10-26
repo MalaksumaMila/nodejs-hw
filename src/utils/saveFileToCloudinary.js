@@ -29,6 +29,6 @@ export async function saveFileToCloudinary(buffer, userId) {
         return resolve(uploadResult);
       },
     );
-    uploadStrem.end(buffer);
+    uploadStream.end(buffer);
   });
 }
